@@ -1,0 +1,19 @@
+<svg width="1440" height="334" viewBox="0 0 1440 334" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="improved-task-bar-elipse">
+<mask id="mask0_239_13" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-471" y="0" width="2291" height="334">
+<rect id="Rectangle 33" x="-471" width="2291" height="334" fill="white"/>
+</mask>
+<g mask="url(#mask0_239_13)">
+<g id="task_bar_elipse" filter="url(#filter0_f_239_13)">
+<ellipse cx="1475.78" cy="-282.096" rx="893.756" ry="444.239" transform="rotate(-13 1475.78 -282.096)" fill="#69A998" fill-opacity="0.6"/>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_239_13" x="487.136" y="-871.477" width="1977.29" height="1178.76" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="56" result="effect1_foregroundBlur_239_13"/>
+</filter>
+</defs>
+</svg>

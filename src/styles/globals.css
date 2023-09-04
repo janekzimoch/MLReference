@@ -16,6 +16,16 @@
   }
 }
 
+/* @layer utilities {
+  .animation-delay-9 {
+    animation-delay: 9s;
+  }
+  .animation-delay-18 {
+    animation-delay: 18s;
+  }
+} */
+
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
