@@ -8,17 +8,17 @@ module.exports = {
   theme: {
     extend: {
       animation: {
-        "disapearing-logos": "disapearing-logos 60s infinite",
+        "disapearing-logos": "disapearing-logos 50s infinite",
       },
       keyframes: {
         "disapearing-logos": {
           "0%": {
             opacity: 0,
           },
-          "10%": {
+          "15%": {
             opacity: 1,
           },
-          "20%": {
+          "30%": {
             opacity: 0,
           },
           "100%": {

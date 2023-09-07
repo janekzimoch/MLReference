@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1000" height="1000" viewBox="0 0 1000 1000" xml:space="preserve">
+<desc>Created with Fabric.js 3.5.0</desc>
+<defs>
+</defs>
+<rect x="0" y="0" width="100%" height="100%" fill="rgba(255,255,255,0)"/>
+<g transform="matrix(1.1088 0 0 0.343 499.9855 172.0525)" id="566530" clip-path="url(#CLIPPATH_4)">
+<clipPath id="CLIPPATH_4">
+	<path transform="matrix(1 0 0 1 0 0) translate(-477.5817, -472.0447)" id="a" d="M 808.5 674.5 Q 701 849 513.5 825 T 181 650.5 Q 36 500 147.5 291.5 t 319 -150.5 Q 674 199 795 349.5 t 13.5 325 Z" stroke-linecap="round"/>
+</clipPath>
+<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; is-custom-font: none; font-file-url: none; fill: rgb(43,103,119); fill-rule: nonzero; opacity: 1;" vector-effect="non-scaling-stroke" transform=" translate(-477.5817, -472.0447)" d="M 808.5 674.5 Q 701 849 513.5 825 T 181 650.5 Q 36 500 147.5 291.5 t 319 -150.5 Q 674 199 795 349.5 t 13.5 325 Z" stroke-linecap="round"/>
+</g>
+</svg>

@@ -7,7 +7,7 @@ const outfit = Outfit({ subsets: ["latin"] });
 
 export default function App({ Component, pageProps }) {
   return (
-    <div className={outfit.className}>
+    <div className={`${outfit.className} overflow-x-hidden`}>
       <Background>
         <NavBar>
           <Component {...pageProps} />

@@ -5,11 +5,11 @@ import task_bar_elipse from "../../../public/improved-task-bar-elipse.svg";
 
 export default function NavBar({ children }) {
   return (
-    <div className="">
-      <div className="sticky top-0 z-[100]">
-        <div className="w-full bg-prm-white h-[80px] absolute z-20"></div>
+    <div>
+      <div className="fixed left-0 right-0 top-0 z-[100]">
+        <div className="w-full bg-prm-white blur-md h-[120px] -top-[40px] absolute z-30"></div>
         <Image
-          className="z-20 w-full absolute -top-[100px] opacity-100"
+          className="z-30 w-full absolute -top-[120px] opacity-100"
           src={task_bar_elipse}
           alt="Your SVG"
         />
@@ -17,7 +17,7 @@ export default function NavBar({ children }) {
           <Menu />
         </div>
       </div>
-      <div className="">{children}</div>
+      <div>{children}</div>
     </div>
   );
 }

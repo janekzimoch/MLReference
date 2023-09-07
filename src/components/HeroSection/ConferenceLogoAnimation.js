@@ -55,7 +55,7 @@ export default function ConferenceLogoAnimation() {
             logo1={conferences[randomIndexes[3]]}
             logo2={conferences[randomIndexes[4]]}
             logo3={conferences[randomIndexes[5]]}
-            delay_max={randomLogoDelay[1]}
+            delay_max={0}
           />
         </div>
         <div></div>
@@ -104,7 +104,7 @@ export default function ConferenceLogoAnimation() {
             logo1={conferences[randomIndexes[18]]}
             logo2={conferences[randomIndexes[19]]}
             logo3={conferences[randomIndexes[20]]}
-            delay_max={randomLogoDelay[6]}
+            delay_max={0}
           />
         </div>
         <div></div>

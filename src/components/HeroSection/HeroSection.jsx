@@ -26,11 +26,11 @@ export default function HeroSection() {
             </h2>
           </div>
         </div>
-        <div className="col-span-4 -ml-80 -mr-18 mt-24 invisible md:visible">
+        <div className="col-span-4 -ml-52 2xl:-ml-80 -mr-18 2xl:-mr-18 mt-24 invisible md:visible">
           <ConfLogoAnimation />
         </div>
       </div>
-      <div className="items-center justify-center flex mt-16">
+      <div className="relative items-center justify-center z-30 flex mt-28 2xl:mt-44">
         <TryButton />
       </div>
     </div>
