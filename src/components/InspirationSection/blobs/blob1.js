@@ -15,7 +15,7 @@ export default function Blob1() {
           />
         </clipPath>
       </defs>
-      <g clip-path="url(#a)">
+      <g clipPath="url(#a)">
         <path
           fill="#52ab98"
           d="M894.5 647.5Q852 795 709 836t-249.5-20Q353 755 193 712.5t-137-204q23-161.5 156.5-218t240-91.5q106.5-35 216 16.5t189 168q79.5 116.5 37 264Z"

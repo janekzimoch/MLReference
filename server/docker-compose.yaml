@@ -1,0 +1,17 @@
+version: '3'
+services:
+  fastapi:
+    build:
+      context: ./fastapi
+      dockerfile: Dockerfile
+    ports:
+      - "4001:4001"
+    depends_on:
+      - express
+
+  express:
+    build:
+      context: ./express
+      dockerfile: Dockerfile
+    ports:
+      - "4002:4002"

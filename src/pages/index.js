@@ -5,6 +5,7 @@ import MotivationSection from "../components/MotivationSection/MotivationSection
 import InspirationSection from "../components/InspirationSection/InspirationSection";
 import HowItWorks from "../components/HowItWorks/HowItWorks";
 import Donation from "../components/Donation/Donation";
+import Footer from "../components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,7 +16,8 @@ export default function Home() {
       <MotivationSection />
       <InspirationSection />
       <HowItWorks />
-      <Donation />
+      <Donation id="donate" />
+      <Footer />
     </div>
   );
 }

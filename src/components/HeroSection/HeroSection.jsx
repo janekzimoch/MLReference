@@ -4,7 +4,7 @@ import TryButton from "./TryButton";
 
 export default function HeroSection() {
   return (
-    <div className="">
+    <div className="pb-[200px]">
       <div className="grid grid-cols-12">
         <div className="col-span-8">
           <div className="mt-[130px]">
@@ -26,11 +26,11 @@ export default function HeroSection() {
             </h2>
           </div>
         </div>
-        <div className="col-span-4 -ml-52 2xl:-ml-80 -mr-18 2xl:-mr-18 mt-24 invisible md:visible">
+        <div className="col-span-4 -ml-44 -mr-18 mt-24 invisible md:visible">
           <ConfLogoAnimation />
         </div>
       </div>
-      <div className="relative items-center justify-center z-30 flex mt-28 2xl:mt-44">
+      <div className="relative items-center justify-center z-30 flex mt-28">
         <TryButton />
       </div>
     </div>
