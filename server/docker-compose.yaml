@@ -16,4 +16,4 @@ services:
     ports:
       - "4002:4002"
 
-# docker compuse up
+# docker compuse up -d

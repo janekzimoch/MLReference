@@ -16,15 +16,6 @@
   }
 }
 
-/* @layer utilities {
-  .animation-delay-9 {
-    animation-delay: 9s;
-  }
-  .animation-delay-18 {
-    animation-delay: 18s;
-  }
-} */
-
 
 body {
   color: rgb(var(--foreground-rgb));
@@ -34,4 +25,11 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+@layer components {
+  .donate_items_size {
+    width: 200px;
+    height: 60px;
+  }
 }

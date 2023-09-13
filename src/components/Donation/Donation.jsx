@@ -33,8 +33,8 @@ export default function Donation() {
               <div className="flex items-center justify-start w-full pt-10">
                 <div className="flex w-1/2 justify-center">
                   <a
-                    href="/"
-                    className="text-prm-green px-10 py-3 rounded-full text-xl tracking-wider font-semibold bg-transparent border-solid border-[2px] border-prm-green transition-all hover:bg-prm-white/20"
+                    href="/donate"
+                    className="text-prm-green px-10 py-3 rounded-full text-xl tracking-wider font-semibold bg-prm-white border-solid border-[2px] border-prm-green transition-all hover:bg-prm-gray drop-shadow-md"
                   >
                     Donate
                   </a>
