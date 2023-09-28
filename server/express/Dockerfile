@@ -11,7 +11,7 @@ RUN npm install
 
 EXPOSE 4002
 
-CMD ["node", "server.js"]
+CMD ["node", "payment.js"]
 
 # "build": "tsc",
 # docker build -t express_server .

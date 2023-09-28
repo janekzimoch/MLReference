@@ -16,6 +16,7 @@
 // });
 
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const { resolve } = require("path");
 // Copy the .env.example in the root into a .env file in this folder
@@ -24,12 +25,16 @@ require("dotenv").config();
 // Ensure environment variables are set.
 checkEnv();
 
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY, {
+const test = true;
+const stripe_key = test ? process.env.STRIPE_TEST_SECRET_KEY : process.env.STRIPE_SECRET_KEY;
+const stripe = require("stripe")(stripe_key, {
   apiVersion: "2020-08-27",
 });
 
 app.use(express.static(process.env.STATIC_DIR));
 app.use(express.urlencoded());
+// app.use(cors({ origin: ["https://checkout.stripe.com", "http://localhost:3000"] }));
+app.use(cors({ origin: "*" }));
 app.use(
   express.json({
     // We need the raw body to verify webhook signatures.
@@ -55,26 +60,50 @@ app.get("/checkout-session", async (req, res) => {
 });
 
 app.post("/create-checkout-session", async (req, res) => {
-  const domainURL = process.env.DOMAIN;
+  // console.log(stripe);
+  // console.log(stripe.checkout.sessions);
+  const domainURL = "http://localhost:3000"; //process.env.DOMAIN;
+  const { amount, isOneOff, currency } = req.body;
+  const isOneOffBoolean = isOneOff === "true" ? true : false;
 
-  // Create new Checkout Session for the order
-  // Other optional params include:
-  // For full details see https://stripe.com/docs/api/checkout/sessions/create
-  const session = await stripe.checkout.sessions.create({
-    mode: "payment",
+  let price_data = {
+    unit_amount: parseInt(parseFloat(amount) * 100),
+    currency: currency.toLowerCase(),
+    product: test
+      ? isOneOffBoolean
+        ? process.env.PRODUCT_TEST_ONEOFF
+        : process.env.PRODUCT_TEST_SUBSCRIPTION
+      : isOneOffBoolean
+      ? process.env.PRODUCT_ONEOFF
+      : process.env.PRODUCT_SUBSCRIPTION,
+  };
+  if (!isOneOffBoolean) {
+    price_data.recurring = { interval: "month" };
+  }
+
+  const payment_description = {
+    mode: isOneOffBoolean ? "payment" : "subscription",
     line_items: [
       {
-        price: process.env.PRICE,
+        price_data,
         quantity: 1,
       },
     ],
-    // ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
-    success_url: `${domainURL}/success.html?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${domainURL}/canceled.html`,
-    // automatic_tax: { enabled: true }
-  });
+    success_url: `${domainURL}/donate/success`,
+    cancel_url: `${domainURL}/donate/canceled`,
+  };
+  if (isOneOffBoolean) {
+    payment_description.submit_type = "donate";
+  }
 
-  return res.redirect(303, session.url);
+  console.log(price_data);
+  try {
+    const session = await stripe.checkout.sessions.create(payment_description);
+    res.redirect(303, session.url);
+  } catch (err) {
+    console.log(err);
+    res.status(err.statusCode || 500).json(err.message);
+  }
 });
 
 // Webhook handler for asynchronous events.

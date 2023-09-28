@@ -9,7 +9,7 @@ export default function NavBar({ children }) {
       <div className="fixed left-0 right-0 top-0 z-[100]">
         <div className="w-full bg-prm-white blur-md h-[120px] -top-[40px] absolute z-30"></div>
         <Image
-          className="z-30 w-full absolute -top-[120px] opacity-100"
+          className="z-30 absolute -top-[40px] w-full opacity-100"
           src={task_bar_elipse}
           alt="Your SVG"
         />

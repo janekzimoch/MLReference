@@ -11,11 +11,11 @@ export default function Menu() {
 
   return (
     <div className="h-20 justify-between items-center flex flex-row">
-      <a href="#hero_section">
+      <a href="/#hero_section">
         <p className="text-prm-green text-3xl font-normal">ML Reference</p>
       </a>
       <div className="flex flex-row">
-        <MenuButton href="/">Try for Free</MenuButton>
+        <MenuButton href="/app">Try for Free</MenuButton>
         <MenuButton href="/#how_it_works" onClick={() => scrollToSection("#how_it_works")}>
           How it works
         </MenuButton>

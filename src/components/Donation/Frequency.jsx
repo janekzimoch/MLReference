@@ -7,6 +7,8 @@ export default function Frequency({ isOneOff, setIsOneOff }) {
   const transition = "transition-all duration-[500ms] ease-in-out";
 
   const handleClick = () => {
+    console.log("freq click!");
+    console.log(isOneOff);
     if (isOneOff) {
       setIsOneOff(false);
     } else {
