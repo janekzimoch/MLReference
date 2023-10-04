@@ -1,0 +1,3 @@
+TABLE_NAME = 'documents_dev'
+DOCUMENT_PATH=""
+DOCUMENT_METADATA_PATH=""

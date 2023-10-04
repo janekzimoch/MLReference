@@ -21,7 +21,7 @@ export default function Message(props) {
                 <span
                   className={`inline-block rounded-lg ${
                     props.is_last_message ? `rounded-${rounded_none}-none` : ""
-                  } bg-[#BDCDD6] px-4 py-2 text-gray-600 hover:bg-[#93BFCF]`}
+                  } bg-prm-green/20 px-6 py-3 text-gray-600 hover:bg-prm-green/30`}
                 >
                   <p className="break-words">{props.msg.message}</p>
                 </span>
@@ -31,7 +31,7 @@ export default function Message(props) {
                 <span
                   className={`inline-block rounded-lg ${
                     props.is_last_message ? `rounded-${rounded_none}-none` : ""
-                  } bg-gray-300 px-4 py-2 text-gray-600`}
+                  } bg-prm-steel/50 px-6 py-3 text-gray-600`}
                 >
                   <p className="break-all">{props.msg.message}</p>
                 </span>
