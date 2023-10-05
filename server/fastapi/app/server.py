@@ -1,12 +1,16 @@
 ''' 
 Single API for connection to two services: 'Semantic&Search' and 'Q&A'
 '''
-
+import os
 from fastapi import FastAPI
+from sqlalchemy import text
 from interfaces import Document
+import db_connection as db
 
+
+sql_engine = db.setupSQL()
+supabase = db.setupClient()
 app = FastAPI()
-
 
 
 @app.get("/hello")
@@ -29,6 +33,7 @@ async def postSearchQuery():
     # document_ids = searchFaiss(faiss, body.query)
     return 
 
+
 @app.get("/app/documents")
 async def getDocuments():
     '''
@@ -40,12 +45,25 @@ async def getDocuments():
     Output: returns Document object with all relevant info to display about a document 
     '''
 
-@app.get("/app/years")
-async def getYears():
-    ''' simple helper endnode. Return all years in the database. '''
-    return
 
+@db.withSQLConnection(sql_engine)
+@app.get("/app/years")
+async def getYears(connection):
+    ''' simple helper endnode. Return all years in the database. '''
+    query = text("SELECT DISTINCT(year) FROM documents")
+    response = connection.execute(query)
+    years = [i for i in response][0]
+    return years
+
+
+@db.withSQLConnection(sql_engine)
 @app.get("/app/conferences")
-async def getConferences():
+async def getConferences(connection):
     ''' simple helper endnode. Return all conferences in the database. '''
-    return 
+    query = text("SELECT DISTINCT(conference) FROM documents")
+    response = connection.execute(query)
+    conferences = [i for i in response][0]
+    return conferences
+
+years = getYears()
+print(years)

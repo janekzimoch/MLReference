@@ -15,8 +15,6 @@ _ = load_dotenv(find_dotenv())  # read local .env file
 
 url: str = os.environ.get("DB_SUPABASE_URL")
 key: str = os.environ.get("DB_SUPABASE_KEY")
-print(url)
-print(key)
 supabase: Client = create_client(url, key, options=ClientOptions(schema= config.SCHEMA))
 
 
