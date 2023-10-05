@@ -1,3 +1,3 @@
-TABLE_NAME = 'documents_dev'
-DOCUMENT_PATH=""
-DOCUMENT_METADATA_PATH=""
+SAVE_TO = '/Users/janek/Documents/mlreference/papers/'
+TABLE = 'documents'
+SCHEMA = 'public'

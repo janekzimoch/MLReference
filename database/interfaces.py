@@ -7,7 +7,7 @@ class Document:
     title: str
     authors: List[str]
     abstract: str
-    arxiv: str
+    pdf: str
     year: int
     conference: str
     keywords: List[str]  # may make sense to restrict keywords to some set
