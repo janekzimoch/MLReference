@@ -17,21 +17,12 @@ def setupSQL():
     engine = create_engine(db_url)
     return engine
 
+
 def setupClient():
     URL: str = os.environ["DB_SUPABASE_URL"]
     KEY: str = os.environ["DB_SUPABASE_KEY"]
     SCHEMA: str = os.environ["DB_SCHEMA"]
     TABLE: str = os.environ["DB_TABLE"]
-    supabase: Client = create_client(URL, KEY, options=ClientOptions(schema=SCHEMA))
+    supabase: Client = create_client(
+        URL, KEY, options=ClientOptions(schema=SCHEMA))
     return supabase
-
-
-def withSQLConnection(engine):
-    def decorator(func):
-        def wrapper(*args, **kwargs):
-            connection = engine.connect()
-            result = func(connection, *args, **kwargs)
-            connection.close()
-            return result
-        return wrapper
-    return decorator

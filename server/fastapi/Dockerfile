@@ -12,3 +12,4 @@ CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port", "4001"]
 
 # docker build -t fastapi_server .
 # docker run -d --name fastapi_server -p 4001:4001 fastapi_server
+# locally: uvicorn server:app --host 0.0.0.0 --port 5432

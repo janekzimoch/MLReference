@@ -15,8 +15,8 @@ _ = load_dotenv(find_dotenv())  # read local .env file
 
 url: str = os.environ.get("DB_SUPABASE_URL")
 key: str = os.environ.get("DB_SUPABASE_KEY")
-supabase: Client = create_client(url, key, options=ClientOptions(schema= config.SCHEMA))
-
+supabase: Client = create_client(
+    url, key, options=ClientOptions(schema=config.SCHEMA))
 
 
 def writeToDatabase(document: Document) -> None:
@@ -28,7 +28,6 @@ def writeToDatabase(document: Document) -> None:
             print(e.response.content)
         else:
             print(f"An unexpected error occurred: {e}")
-
 
 
 if __name__ == '__main__':
@@ -44,7 +43,6 @@ if __name__ == '__main__':
     document_keys = utils.listDocuments(DOC_PATH)
     document_metadata = utils.readJson(METADATA_PATH)
 
-
     for key in tqdm(document_keys):
         name = key.split('.pdf')[0]
         title: str = document_metadata[name]['title']
@@ -54,6 +52,7 @@ if __name__ == '__main__':
         year: int = document_metadata[name]['year']
         conference: str = document_metadata[name]['conference']
         keywords: List[str] = document_metadata[name]['keywords']
-        document = Document(title=title, authors=authors, abstract=abstract, pdf=pdf, year=year, conference=conference, keywords=keywords)
+        text: List[str] = document_metadata[name]['text']
+        document = Document(title=title, authors=authors, abstract=abstract,
+                            pdf=pdf, year=year, conference=conference, keywords=keywords, text=text)
         writeToDatabase(document)
-
