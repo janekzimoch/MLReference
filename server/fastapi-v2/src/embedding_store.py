@@ -13,6 +13,7 @@ import miscelanous.data_formater as formater
 import miscelanous.utils as utils
 from interfaces import Document, Recommendation
 from parsing.parserPDF import ParserPDF
+import evaluation.evaluate as evaluator
 
 load_dotenv()
 
@@ -21,7 +22,7 @@ load_dotenv()
 
 class EmbeddingStore():
 
-    def __init__(self, model_name="BAAI/bge-base-en-v1.5", device='cpu', data = None, batch_size=32, initialise = True):
+    def __init__(self, model_name="BAAI/bge-base-en-v1.5", device='cpu', data='DORIS-MAE', batch_size=32, initialise = True):
         self.embedding_model = HuggingFaceBgeEmbeddings(model_name=model_name, model_kwargs={'device': device})
         
         self.model_name = model_name.split('/')[1]
@@ -30,28 +31,31 @@ class EmbeddingStore():
         if initialise:
             self.embeddings_path = os.environ.get('EMBEDDINGS_PATH') + f'/embeddings_{self.model_name}.csv'
             self.vector_store_path = os.environ.get('FAISS_PATH') + f'/{self.model_name}'
-            self.vector_store = self._initialise_vectore_store(data)
+            self.vector_store = self._initialise_vectore_store()
         print('Setup finished!')
 
 
-    def _initialise_vectore_store(self, data):
+    def _initialise_vectore_store(self):
         print('_initialise_vectore_store')
         if os.path.exists(self.vector_store_path):
             print('loading FAISS vectore store')
             vector_store = FAISS.load_local(self.vector_store_path, self.embedding_model)
-            print('docstore sizee: ', len(vector_store.docstore._dict))
+            print('docstore size: ', len(vector_store.docstore._dict))
             return vector_store
         else:
             
-            if data is None:
+            if data == 'PDF':
                 # load default data
                 documents_dir = os.environ.get('PDF_ARTICLES_DIR')
                 metadata_path = os.environ.get('PDF_ARTICLES_METADATA_DIR')
                 parser = ParserPDF(metadata_path)
                 docs = parser.extract_directory(documents_dir)
-            else:
+            elif data == 'DORIS-MAE':
                 # we assume data is from DORIS_MAE daatset
+                data = evaluator.load_dataset()
                 docs: list[Document] = formater.convert_DORIS_MAE_to_my_format(data)
+            else:
+                raise ValueError(f'{data} data desn\'t exist, use either PDF or DORIS-MAE')
 
             # initialise vectore store
             print('preparing vectorstore...')
@@ -93,7 +97,7 @@ class EmbeddingStore():
         for document, score in most_similar:
             relevance_description = self._explain_relevance(query, document)
             recommendation: Recommendation = {'page_content': document.page_content,
-                                              'metadata': document.metadata, 'score': score, 'relevance_description': relevance_description}
+                                              'metadata': document.metadata, 'score': float(score), 'relevance_description': relevance_description}
             recommendations.append(recommendation)
         return recommendations
 
@@ -140,8 +144,10 @@ class EmbeddingStore():
 
 if __name__ == "__main__":
 
-    es = EmbeddingStore()
+    model_name = "BAAI/bge-base-en-v1.5"
+    es = EmbeddingStore(model_name, data='DORIS-MAE', batch_size=10, initialise=True)
     query = "I am trying to  build a RAG system, what LLM literature should I read?"
     recommendations = es.article_recommendations(query)
+
     for rec in recommendations:
         print(rec['score'], rec['metadata']['title'])

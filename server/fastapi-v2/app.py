@@ -9,8 +9,7 @@ from src.interfaces import Recommendation
 load_dotenv()
 
 model_name = "BAAI/bge-base-en-v1.5"
-dataset = evaluator.load_dataset()
-es = EmbeddingStore(model_name, data=dataset, batch_size=10, initialise=True)
+es = EmbeddingStore(model_name, data='DORIS-MAE', batch_size=10, initialise=True)
 
 
 app = FastAPI()
@@ -31,4 +30,7 @@ async def search_papers(search_object: SearchObject):
     recommendation: Recommendation = es.article_recommendations(search_object.text)
     return recommendation
 
-
+'''
+run using: 
+uvicorn app:app --reload
+'''
